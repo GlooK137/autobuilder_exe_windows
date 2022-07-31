@@ -1,3 +1,4 @@
+from email import message
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
@@ -7,6 +8,8 @@ from config import TOKEN
 from os import mkdir, path, remove
 from random import randint
 from zipfile import ZipFile
+
+from builder import build
 
 
 bot = Bot(token=TOKEN)
@@ -21,13 +24,13 @@ async def process_start_command(message: types.Message):
 async def echo_message(msg: types.Message):
     folder_name = str( randint( 0, 999999999 ) )
     mkdir(folder_name)
-    print("downloading document")
     destination = path.join(folder_name, msg.document.file_name)
     destination_file = await msg.document.download(destination)
     with ZipFile(destination) as zip_file:
         zip_file.extractall(folder_name)
     remove(destination)
-    print("success")
+    await msg.answer_document( await build(folder_name))
+
 
 
 if __name__ == '__main__':
