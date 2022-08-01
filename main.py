@@ -29,7 +29,11 @@ async def echo_message(msg: types.Message):
     with ZipFile(destination) as zip_file:
         zip_file.extractall(folder_name)
     #remove(destination)
-    await msg.answer_document( await build(folder_name))
+    data =  await build(folder_name)
+    
+    if data[0]:
+        file = open(folder_name+"/main.exe","rb")
+        await bot.send_document( msg.from_user.id , file)
 
 
 

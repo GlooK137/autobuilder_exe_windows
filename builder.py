@@ -25,7 +25,6 @@ async def build(path):
         except Exception as e:
 
             print(f"{command[0]}({command[1]})",e)
-            return 0
+            return [0,f"{command[0]}({command[1]})"]
 
-    file = open(path+"/main.exe","rb")
-    return file
+    return [1]
