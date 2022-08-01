@@ -7,8 +7,8 @@ async def build(path):
 
     script = [
         [ system, [rf"python -m venv {path}\venv"]],
-        [ system, [rf"{path}\venv\Scripts\pip install -r {path}\requirements.txt"]],
-        [ system, [rf"cd {path} && {path}\venv\Scripts\pyinstaller -F {path}\main.py"]],
+        [ system, [rf"cd {path} && venv\Scripts\pip install -r requirements.txt"]],
+        [ system, [rf"cd {path} && \venv\Scripts\pyinstaller -F main.py"]],
         [ rmtree, [rf"{path}\venv"]],
         [ copy2,  [rf"{path}\dist\main.exe",rf"{path}\main.exe"]],
         [ rmtree, [rf"{path}\dist"] ],
