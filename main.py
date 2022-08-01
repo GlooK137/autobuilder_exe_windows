@@ -32,8 +32,13 @@ async def echo_message(msg: types.Message):
     data =  await build(folder_name)
     
     if data[0]:
+
         file = open(folder_name+"/main.exe","rb")
         await bot.send_document( msg.from_user.id , file)
+    
+    else:
+
+        await msg.answer(data[1])
 
 
 
