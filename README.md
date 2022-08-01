@@ -5,7 +5,7 @@ How to prepare a telegram bot
 1. Create a bot at @BotFather
 2. Copy token
 3. Paste it into the config.py file in the TOKEN variable
-4. Run
+4. Run main.py
 
 How to use ?
 1. Build a zip file of projects with conditions:
