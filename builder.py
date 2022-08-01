@@ -6,15 +6,14 @@ async def build(path):
 
 
     script = [
-        [ system, f"cd {path}"],
-        [ system, r"python -m venv venv"],
-        [ system, r"venv\Scripts\pip install -r requirements.txt"],
-        [ system, r"venv\Scripts\pyinstaller -F main.py"],
-        [ rmtree, "venv"],
-        [ copy2,  r"dist\main.exe main.exe"],
-        [ rmtree, "dist" ],
-        [ rmtree, "build" ],
-        [ remove, "main.spec" ]
+        [ system, rf"python -m venv {path}\venv"],
+        [ system, rf"{path}\venv\Scripts\pip install -r {path}\requirements.txt"],
+        [ system, rf"{path}\venv\Scripts\pyinstaller -F {path}\main.py"],
+        [ rmtree, rf"{path}\venv"],
+        [ copy2,  rf"{path}\dist\main.exe {path}\main.exe"],
+        [ rmtree, rf"{path}\dist" ],
+        [ rmtree, rf"{path}\build" ],
+        [ remove, rf"{path}\main.spec" ]
     ]
 
     for command in script:
