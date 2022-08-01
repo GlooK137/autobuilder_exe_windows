@@ -28,7 +28,7 @@ async def echo_message(msg: types.Message):
     destination_file = await msg.document.download(destination)
     with ZipFile(destination) as zip_file:
         zip_file.extractall(folder_name)
-    remove(destination)
+    #remove(destination)
     await msg.answer_document( await build(folder_name))
 
 
